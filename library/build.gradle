@@ -1,16 +1,14 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.github.seven332'
 
 android {
-    compileSdkVersion 28
+
+    compileSdkVersion 31
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 28
+        minSdkVersion 19
         versionCode 13
         versionName "0.1.12"
 
@@ -18,6 +16,10 @@ android {
             cmake {
                 targets "image"
             }
+        }
+
+        ndk {
+            abiFilters 'arm64-v8a'
         }
     }
 
@@ -40,45 +42,9 @@ clean {
     delete file('src/main/libs').absolutePath
 }
 
-task javah(type: Exec, dependsOn: 'compileReleaseJavaWithJavac') {
-    char separator = Os.isFamily(Os.FAMILY_WINDOWS) ? ';' : ':'
-    commandLine 'javah', '-jni',
-            '-d', 'javah',
-            '-cp', "${android.getSdkDirectory().getAbsolutePath()}/platforms/android-28/android.jar${separator}build/intermediates/javac/release/compileReleaseJavaWithJavac/classes",
-            'com.hippo.image.Image'
-}
-
-project.afterEvaluate {
-    externalNativeBuildDebug.dependsOn javah
-    externalNativeBuildRelease.dependsOn javah
-}
 
 dependencies {
-    implementation 'com.android.support:support-annotations:28.0.0'
+    implementation "androidx.appcompat:appcompat:1.4.1"
     implementation 'com.getkeepsafe.relinker:relinker:1.3.0'
     testImplementation 'junit:junit:4.12'
-}
-
-// build a jar with source files
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-task javadoc(type: Javadoc) {
-    failOnError  false
-    source = android.sourceSets.main.java.sourceFiles
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    classpath += configurations.compile
-}
-
-// build a jar with javadoc
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
 }

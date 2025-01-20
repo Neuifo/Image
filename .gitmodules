@@ -7,3 +7,7 @@
 [submodule "library/src/main/jni/giflib/giflib"]
 	path = library/src/main/jni/giflib/giflib
 	url = https://github.com/seven332/giflib.git
+[submodule "library/src/main/jni/libwebp/libwebp"]
+	path = library/src/main/jni/libwebp/libwebp
+	url = https://chromium.googlesource.com/webm/libwebp
+	branch = 1.5.0

@@ -24,14 +24,15 @@ import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * A image with {@link Image} for data and {@link Bitmap} for render.

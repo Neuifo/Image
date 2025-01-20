@@ -13,6 +13,7 @@
 # limitations under the License.
 
 cmake_minimum_required(VERSION 3.4.1)
+set(CMAKE_VERBOSE_MAKEFILE ON)
 project(root)
 
 add_subdirectory(cpufeatures)
@@ -21,3 +22,4 @@ add_subdirectory(stream)
 add_subdirectory(libjpeg-turbo)
 add_subdirectory(libpng)
 add_subdirectory(giflib)
+add_subdirectory(libwebp)

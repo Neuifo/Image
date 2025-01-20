@@ -22,6 +22,7 @@ set(IMAGE_SOURCES
     image_jpeg.c
     image_png.c
     image_gif.c
+    image_webp.c
     java_wrapper.c
 )
 set(IMAGE_INCLUDES
@@ -32,6 +33,7 @@ set(IMAGE_LIBRARIES
     jnigraphics
     GLESv2
     stream
+    libwebp
     libjpeg-turbo
     libpng
     giflib
